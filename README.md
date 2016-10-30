@@ -1,8 +1,6 @@
-## WordPress Code Snippets
+## WordPress Code Snippets for Sublime Text
 
-A WordPress developers Sublime Text 2 snippet library
-
-This is a compilation of WordPress code snippets for Sublime Text 2. Sources include my own work as well as modifications of snippets from: 
+This is a compilation of WordPress code snippets for Sublime Text. Sources include my own work as well as modifications of snippets from: 
 
 * [purplefish32 - sublime-text-2-wordpress](https://github.com/purplefish32/sublime-text-2-wordpress)
 * [jghazally - WordPress-Devs](https://github.com/jghazally/WordPress-Dev)
