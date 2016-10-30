@@ -1,0 +1,20 @@
+<snippet>
+	<content><![CDATA[
+/*
+Theme Name: ${1:My Theme}
+Text Domain: ${2:text-domain}
+Theme URI: ${3:https://github.com/jeff-russ/$2}
+Author: ${4:Jeff Russ}
+Author URI: ${5:https://github.com/jeff-russ/}
+Description: $6
+Version: ${7:0.0.1}
+License: GNU ${8:General Public License v2}
+License URI: ${9:http://www.gnu.org/licenses/gpl-2.0.txt}
+Tags: $10
+*/
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>wp_theme_header</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.php</scope> -->
+</snippet>

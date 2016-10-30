@@ -1,0 +1,23 @@
+<snippet>
+	<content><![CDATA[
+add_settings_field( '${1:parent_stub}_option_{2:id}_select',
+'${3:Select Label}', function()
+{	\$value = get_option( '$1_option_name' )[ "$1_option_2_select" ];
+	?>
+	<select name="$1_option_name[$1_option_2_select]">
+		<option value="1" <?php selected( \$value, 1 ); ?> >
+			Option 1
+		</option>
+		<option value="2" <?php selected( \$value, 2 ); ?> >
+			Option 2
+		</option>
+	</select>
+<?php
+}, '$1', '$1_section_${4:id}' );
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>add_settings_select</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

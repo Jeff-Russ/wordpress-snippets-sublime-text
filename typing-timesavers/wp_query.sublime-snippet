@@ -1,0 +1,25 @@
+<snippet>
+	<content><![CDATA[
+\$${3:query_name} = new WP_Query(
+	array(
+		'post_type'      => '${1:post}',
+		'cat'            => '${2:22,47,67}',
+		'orderby'        => '${3:name}',
+		'order'          => '${4:ASC}',
+		'hide_empty'     => ${5:1},
+		'depth'          => ${6:1},
+		'posts_per_page' => ${7:-1},
+	)
+);
+if ( \$${3:query_name}->have_posts() ):
+	while ( \$${3:query_name}->have_posts() ): 
+		\$${3:query_name}->the_post(); 
+		the_content(); 
+	endwhile; 
+endif;
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>wp_query</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.php</scope> -->
+</snippet>

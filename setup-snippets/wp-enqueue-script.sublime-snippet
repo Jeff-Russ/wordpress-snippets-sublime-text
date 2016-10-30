@@ -1,0 +1,18 @@
+<snippet>
+	<content><![CDATA[
+add_action( 'wp_enqueue_scripts', function() {
+	wp_enqueue_script( '${1:unique_handle}', '${2:scriptpath/rel/to/wproot}',
+		# optional array of dependencies
+		# optional script version number
+		# bool, if true put before body (defaults to false)
+		);
+});
+
+]]></content>
+<!-- Optional: Description to show in the menu -->
+    <description>WordPress Enqueue Script</description>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	 <tabTrigger>wp_enqueue_script</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>php</scope> -->
+</snippet>

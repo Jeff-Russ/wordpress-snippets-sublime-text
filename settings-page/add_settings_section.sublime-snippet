@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[
+add_settings_section( '${1:parent_stub}_section_${2:id}', '${3:Section Label}',
+function(){echo'<div style="margin-left:8%">';}, '$1' );
+
+#sublime-snippets: add_settings_textfield | add_settings_checkbox | 
+# add_settings_radio | add_settings_testarea | add_settings_select
+
+add_settings_section('/$1_section_$2','', # dummy section to close div
+function(){echo"</div>\r\n";},'$1'); 
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>add_settings_section</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

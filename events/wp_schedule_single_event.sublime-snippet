@@ -1,0 +1,14 @@
+<snippet>
+	<content><![CDATA[
+add_action( '${1:my_scheduled_event}', function() {
+	# do stuff here, no return
+});
+
+# arg1 is integer - unix timestamp of when to run first time
+# arg2 can be 'hourly' 'twicedaily' or 'daily'
+wp_schedule_single_event( ${timestamp:time()}, '${1}' );
+]]></content>
+	<description>Register Single Event</description>
+	<tabTrigger>wp_schedule_single_event</tabTrigger>
+	<scope>source.php - variable.other.php</scope>
+</snippet>

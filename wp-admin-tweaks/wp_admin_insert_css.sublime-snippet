@@ -1,0 +1,21 @@
+<snippet>
+	<content><![CDATA[
+
+add_action('admin_head', function() {
+	echo '<style type="text/css">
+		body {
+			filter: invert(80%) hue-rotate(100deg) brightness(0.85);
+		}
+	</style>';
+});
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>wp_admin_insert_css</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+ 
+     <!-- Optional: Description to show in the menu -->
+    <description>Insert CSS into admin panel head</description>
+</snippet>
+
+

@@ -1,0 +1,87 @@
+<snippet>
+	<content><![CDATA[
+add_action("admin_menu", function()
+{	# add_menu_page adds page directly on the sidebar
+	add_menu_page( "${1:Page Title}", "${2:Menu Title}", "manage_options", "${3:unique_stub}", function() {
+		?>
+		<div class="wrap">
+			<h1><?php echo get_admin_page_title();?></h1>
+			<hr color='#333' size='4'>
+			<form action="options.php" method="post">
+			<?php
+				settings_fields( "$3_option_group" );
+				do_settings_sections( "$3" );
+				submit_button();
+			?>
+			</form>
+		</div>
+		<?php
+	});
+});
+add_action( "admin_init", function()
+{	#args:'option_group', 'option_name'
+	# these 2 arg can be the same but you can have multiples names in group like modules
+	register_setting( "$3_option_group", "$3_option_name" ); 
+
+	add_settings_section( "$3_section_id", "Section Title", function(\$arg){
+		# "Section Title" is automatically displayed first.
+	},"$3" );
+
+	#sublime-snippet,type: add_settings_textfield
+	add_settings_field( "$3_option_01_textfield", "Textfield Label", function()
+	{	\$value = get_option( "$3_option_name" )[ "$3_option_01_textfield" ];
+		?>
+		<input type="text" name="$3_option_name[$3_option_01_textfield]"
+			value="<?php echo \$value; ?>">
+		<?php
+	}, "$3", "$3_section_id" );
+
+	#sublime-snippet,type: add_settings_checkbox
+	add_settings_field( "$3_option_02_checkbox", "Checkbox Label", function()
+	{	\$value = get_option( "$3_option_name" )[ "$3_option_02_checkbox" ];
+		?>
+		<input type="checkbox" name="$3_option_name[$3_option_02_checkbox]"
+			<?php checked( \$value, 1 ); ?> value="1">
+		<?php
+	}, "$3", "$3_section_id" );
+
+	#sublime-snippet,type: add_settings_radio
+	add_settings_field( "$3_option_03_radio", "Radio Label", function()
+	{	\$value = get_option( "$3_option_name" )[ "$3_option_03_radio" ];
+		?>
+		<input type="radio" name="$3_option_name[$3_option_03_radio]"
+			<?php checked( \$value, 1 ); ?> value="1">
+		<?php
+	}, "$3", "$3_section_id" );
+
+	#sublime-snippet,type: add_settings_testarea
+	add_settings_field( "$3_option_04_textarea", "Textarea Label", function()
+	{	\$value = get_option( "$3_option_name" )[ "$3_option_04_textarea" ];
+		?>
+		<textarea cols="40" rows="5" name="$3_option_name[$3_option_04_textarea]"> 
+			<?php echo \$value; ?>
+		</textarea>
+		<?php
+	}, "$3", "$3_section_id" );
+
+	#sublime-snippet,type: add_settings_select
+	add_settings_field( "$3_option_05_select", "Select Label", function()
+	{	\$value = get_option( "$3_option_name" )[ "$3_option_05_select" ];
+		?>
+		<select name="$3_option_name[$3_option_05_select]">
+			<option value="1" <?php selected( \$value, 1 ); ?> >
+				Option 1
+			</option>
+			<option value="2" <?php selected( \$value, 2 ); ?> >
+				Option 2
+			</option>
+		</select>
+	<?php
+	}, "$3", "$3_section_id" );
+});
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>settings_page_template</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

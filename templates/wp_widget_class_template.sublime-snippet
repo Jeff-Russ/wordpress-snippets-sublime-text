@@ -1,0 +1,53 @@
+<snippet>
+	<content><![CDATA[
+class ${1:Prefixed_Name}_Widget extends WP_Widget
+{
+	function $1_Widget()
+	{
+		\$widget_ops = array( 'classname' => '${2:CSS class name}', 'description' => '${3:Description}' );
+		\$this->WP_Widget( '$2', '${4:Title}', \$widget_ops );
+	}
+
+	function widget( \$args, \$instance )
+	{	# $args is array of standard parameters for widgets in this theme
+		# $instance is array of settings for this widget instance
+
+		extract( \$args, EXTR_SKIP );
+		echo \$before_widget;
+		echo \$before_title;
+		echo '$4'; // Can set this with a widget option, or omit altogether
+		echo \$after_title;
+
+		# prepare \$after_widget here
+
+		echo \$after_widget;
+	}
+
+	function update( \$new_instance, \$old_instance )
+	{	# $new_instance is array of new settings as submitted by the admin
+		# $old_instance is array of the previous settings
+
+		# validate/etc the settings when they are saved by the admin
+
+		\$updated_instance = \$new_instance;
+		return \$updated_instance; # return array of validated / amended settings
+	}
+
+	function form( \$instance )
+	{	# $instance is array of the current settings for this widget
+
+		\$instance = wp_parse_args( (array) \$instance, array( ${5:array of option_name => value pairs} ) );
+
+		# Displays the form for this widget on the Widgets page of the WP Admin area using:
+		# \$this->get_field_id( 'option_name' ) - the CSS ID
+		# \$this->get_field_name( 'option_name' ) - the HTML name
+		# \$instance['option_name'] - the option value
+	}
+}
+
+add_action( 'widgets_init', create_function( '', "register_widget( '$1_Widget' );" ) );
+]]></content>
+	<description>Widget Class Template</description>
+	<tabTrigger>wp_widget_class</tabTrigger>
+	<scope>source.php - variable.other.php</scope>
+</snippet>

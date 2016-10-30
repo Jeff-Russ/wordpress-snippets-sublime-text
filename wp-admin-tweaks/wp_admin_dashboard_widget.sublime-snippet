@@ -1,0 +1,21 @@
+<snippet>
+	<content><![CDATA[
+add_action( 'wp_dashboard_setup', function()
+{
+	wp_add_dashboard_widget( # arg1 is css class and key in db.
+	'${1:widget_slug_name}', __( '${2:Widget Name}' ), function()
+	{
+		echo "<h3>Hello from $2</h3>";
+	});
+});
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>wp_admin_dashboard_widget</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+ 
+     <!-- Optional: Description to show in the menu -->
+    <description>Add a custom dashboard widget</description>
+</snippet>
+
+

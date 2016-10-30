@@ -1,0 +1,65 @@
+<snippet>
+	<content><![CDATA[
+/*
+
+
+wp_snippits_info + TAB
+	produces temporary readme as php comment with info about the WordPress snippits
+
+
+## Snippets for Initial Setup of Themes and Plugins
+
+plugin_header + TAB
+	generate plugin header in comment. Supports PHPDoc DocBlock.
+
+theme_header + TAB
+	generate theme header in comment.
+
+
+## Generating a Settings Page (aka "Options Page") for Themes and Plugins
+
+settings_page_tempate + TAB
+	generates a full settings page with various input fields to get you started.
+
+settings_page + TAB
+	generates an settings page with a single indented section.
+
+
+## Making a Settings Page Bit by Bit
+
+add_menu_page + TAB
+	adds settings page directly on the sidebar, nothing else.
+
+add_options_page + TAB
+	adds settings page to 'Settings' on the sidebar, nothing else.
+
+add_tools_page + TAB
+	adds settings page to 'Tools' on the sidebar, nothing else.
+
+add_submenu_page + TAB
+	adds settings page on the sidebar, nested within other entry that you set, nothing else.
+
+
+## Creating Settings Page Sections and Inserting Input Fields Into Them:
+
+add_settings_section
+	adds indented settings section to page and closes indenting with a dummy section
+
+
+These are all self-explanitory:
+
+add_settings_textfield + TAB
+add_settings_checkbox + TAB
+add_settings_radio + TAB
+add_settings_textarea + TAB
+add_settings_select + TAB
+
+
+
+*/
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>wp_snippits_info</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

@@ -1,0 +1,30 @@
+<snippet>
+	<content><![CDATA[
+add_action("admin_menu", function() 
+{	# add_submenu_page(null...) adds hidden page to admin (without any link)
+	add_submenu_page( ${1:null}, "${2:Page Title}", "${3:Menu Title}", "manage_options", "${4:unique_stub}", function() {
+		?><div class="wrap">
+			<h1><?php echo get_admin_page_title();?></h1>
+			<hr color='#333' size='4'>
+			<form action="options.php" method="post">
+			<?php
+				settings_fields( "$4_option_group" );
+				do_settings_sections( "$4" );
+				submit_button();
+			?>
+			</form>
+		</div><?php
+	});
+});
+add_action( "admin_init", function()
+{
+	register_setting( '$4_option_group', '$4_option_name' );
+
+	#add_sections_and_settings_here
+});
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>add_submenu_page</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

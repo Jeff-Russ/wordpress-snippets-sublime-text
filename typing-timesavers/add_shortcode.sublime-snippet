@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[
+
+add_shortcode( '${1:shortcode-tag}', function( \$atts ) {
+	\$atts = shortcode_atts(
+		array(
+			'attribute' => 'default value'
+		), \$atts, '$1' );
+	# extract( \$atts );
+
+	# assemble a return statement
+});
+]]></content>
+	<description>Shortcode</description>
+	<tabTrigger>add_shortcode</tabTrigger>
+	<scope>source.php - variable.other.php</scope>
+</snippet>

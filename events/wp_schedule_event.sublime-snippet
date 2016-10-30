@@ -1,0 +1,15 @@
+<snippet>
+	<content><![CDATA[
+add_action( '${1:my_scheduled_event}', function() {
+	# executed when event is fired. no return
+});
+
+# arg1 is integer - unix timestamp of when to run first time
+# arg2 can be 'hourly' 'twicedaily' or 'daily'
+wp_schedule_event( ${3:current_time('timestamp')}, '${4:daily}', '$1' );
+
+]]></content>
+	<description>Schedule Recurring Event</description>
+	<tabTrigger>wp_schedule_event</tabTrigger>
+	<scope>source.php - variable.other.php</scope>
+</snippet>

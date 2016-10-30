@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[
+add_settings_field( '${1:parent_stub}_option_{2:id}_checkbox',
+'${3:Checkbox Label}', function()
+{	\$value = get_option( '$1_option_name' )[ "$1_option_2_checkbox" ];
+	?>
+	<input type="checkbox" name="$1_option_name[$1_option_2_checkbox]"
+		<?php checked( \$value, 1 ); ?> value="1">
+	<?php
+}, '$1', '$1_section_${4:id}' );
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>add_settings_checkbox</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

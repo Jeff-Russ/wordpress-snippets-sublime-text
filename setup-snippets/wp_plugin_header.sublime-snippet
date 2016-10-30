@@ -1,0 +1,28 @@
+<snippet>
+	<content><![CDATA[
+<?php
+/**
+ * ${1:My Plugin}
+ *
+ * @package     ${2:my-plugin}
+ * @author      ${3:Jeff Russ}
+ * @copyright   ${4:2016 Jeff Russ}
+ * @license     ${5:GPL-2.0}
+ *
+ * @wordpress-plugin
+ * Plugin Name: $1
+ * Plugin URI:  ${6:https://github.com/jeff-russ/$2}
+ * Description: $7
+ * Version:     ${8:0.1}
+ * Author:      $3
+ * Author URI:  ${9:$6}
+ * Text Domain: $2
+ * License:     ${10:GPL-2.0}
+ * License URI: ${11:http://www.gnu.org/licenses/gpl-2.0.txt}
+ */
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>wp_plugin_header</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.php</scope> -->
+</snippet>

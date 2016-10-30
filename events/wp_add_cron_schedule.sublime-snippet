@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[
+add_filter( 'cron_schedules', function( \$schedules ) {
+	# add to the array:
+	# 'interval' - time in seconds between each time the schedule is run'
+	# 'display' - friendly description of the interval
+	\$schedules['${2:string quarter_hour}'] = array(
+		'interval'	=> ${3:900}, 
+		'display'	=> _( '${4:Every 15 Minutes}' )
+	);$0
+	return \$schedules;
+} );
+]]></content>
+	<description>Register Schedule</description>
+	<tabTrigger>wp_add_cron_schedule</tabTrigger>
+	<scope>source.php - variable.other.php</scope>
+</snippet>
