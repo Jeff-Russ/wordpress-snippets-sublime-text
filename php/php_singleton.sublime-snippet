@@ -1,0 +1,22 @@
+<snippet>
+	<content><![CDATA[
+private static $instance;
+public static function getInstance() {
+	if (null === static::$instance) static::$instance = new static();
+	return static::$instance;
+}
+private function __clone(){}
+private function __wakeup(){}
+
+protected function __construct()
+{
+	
+}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>php_singleton</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.php - variable.other.php</scope>
+	<description>Insert singleton setup into class body</description>
+</snippet>

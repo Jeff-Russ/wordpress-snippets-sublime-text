@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[
+include_once substr( __FILE__, 0, strpos(__FILE__, "wp-content") ).'wp-admin/includes/file.php';
+]]></content>
+	<description>Include /wp-admin/includes/file.php</description>
+	<tabTrigger>wp_include_file.php</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.php - variable.other.php</scope>
+</snippet>

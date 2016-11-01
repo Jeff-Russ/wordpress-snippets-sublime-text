@@ -1,0 +1,113 @@
+<snippet>
+	<content><![CDATA[
+# include in any and all plugins extended and instantiate from main php file the
+# pass it around to anonymous callbacks like so: add_action( ..., function() use ($your_obj) {...});
+include_once substr( __FILE__, 0, strpos(__FILE__, "wp-content") ).'wp-admin/includes/file.php';
+include_once substr( __FILE__, 0, strpos(__FILE__, "wp-content") ).'wp-admin/includes/plugin.php';
+
+if ( ! class_exists('PluginBase')) { # this is just so muliple plugins can share
+class PluginBase {
+	# objects must be instantiated from main php file after activation!
+
+	public \$info; # array holding info server data
+	public \$logs = array();
+
+	public function __construct( \$min_wp=null, \$min_php=null ) {
+		\$caller_path = debug_backtrace()[0]['file'];
+		\$this->info['get_plugin_data'] = get_plugin_data(\$caller_path);
+		\$this->info['plugin_basename'] = plugin_basename(\$caller_path);
+
+		if ( version_compare( PHP_VERSION, \$min_php, '<' ) ) \$flag = 'PHP';
+		elseif ( version_compare( \$wp_version, \$min_wp, '<' ) ) \$flag = 'WordPress';
+		else \$flag = false;
+
+		if (\$flag !== false) {
+			\$version = (\$flag === 'PHP' ) ? \$min_php : \$min_wp;
+			\$basen = \$this->info['plugin_basename'];
+			deactivate_plugins( \$basen );
+			\$opts = array( 'response'=>200, 'back_link'=>TRUE );
+			wp_die ("<p><strong>\$basen</strong> requires " 
+				. \$flag . ' version ' . \$version .' or greater.</p>',
+				'Plugin Activation Error', \$opts);
+		}
+
+		\$this->info['plugin_file'] = \$caller_path;
+		\$this->info['plugin_path'] = dirname(\$caller_path);
+		\$this->info['plugin_slug'] = basename(\$caller_path, ".php");
+		\$this->info['plugin_url'] = WP_PLUGIN_URL.'/'.\$this->info['plugin_slug'];
+
+		\$this->info['min_wp'] = ( ! is_null(\$min_wp) )  ? \$min_wp : '4.4.0';
+		\$this->info['min_wp'] = ( ! is_null(\$min_php) ) ? \$min_wp : '5.3.0';
+		global \$wp_version;
+
+		if ( array_key_exists('SERVER_ADDR', \$_SERVER) ) 
+			\$temp = \$_SERVER['SERVER_ADDR'];
+		elseif ( array_key_exists('LOCAL_ADDR', \$_SERVER) )
+			\$temp = \$_SERVER['LOCAL_ADDR'];
+		elseif ( array_key_exists('SERVER_NAME', \$_SERVER) )
+			\$temp = gethostbyname(\$_SERVER['SERVER_NAME']);
+		else {
+			if(stristr(PHP_OS, 'WIN')) {
+				\$temp = gethostbyname(php_uname("n"));
+			} else {
+				\$ifconfig = shell_exec('/sbin/ifconfig eth0');
+				preg_match('/addr:([\d\.]+)/', \$ifconfig, \$match);
+				\$temp = \$match[1];
+			}
+		}
+		\$this->info['server_ip'] = \$temp;
+		\$this->logs['info'] = \$this->var2string(\$this->info);
+		\$this->logs['GLOBALS'] = \$this->viewGLOBALS();
+	}
+
+	// For displaying booleans
+	public function bool2str (\$bool_val) { return \$bool_val ? 'true' : 'false'; }
+
+	// For displaying octal number without converting
+	public function octal2str (\$octal_num) { return sprintf("%04o", \$octal_num); }
+
+	// return string after final /
+	public function str_after_bslash (\$string) { return array_pop(explode('/', \$string)); }
+
+	public function viewGLOBALS(){
+		\$objects = "<br>Objects in \\$GLOBALS:<br>";
+		\$arrays = "<br>Arrays in \\$GLOBALS:<br>";
+		\$true = "<br>True in \\$GLOBALS:<br>";
+		\$false = "<br>False in \\$GLOBALS:<br>";
+		\$nulls = "<br>NULL in \\$GLOBALS:<br>";
+		\$nums = "<br>Numbers in \\$GLOBALS:<br>";
+		\$strs = "<br>Strings in \\$GLOBALS:<br>";
+		\$else = "<br>others in \\$GLOBALS:<br>";
+		foreach (\$GLOBALS as \$key => \$value) {
+			if (is_object(\$value)) \$objects .= " '\$key',";
+			elseif (is_array(\$value)) \$arrays .= " '\$key',";
+			elseif (true === \$value) \$true .= " '\$key',";
+			elseif (false === \$value) \$false .= " '\$key'";
+			elseif (is_null(\$value)) \$nulls .= " '\$key',";
+			elseif (is_numeric(\$value)) \$nums .= " '\$key' => \$value,<br>";
+			elseif (is_string(\$value)) \$strs .= " '\$key' => '\$value',<br>";
+			else \$else += " '\$key' => \$value,";
+		}
+		return \$objects . '<br>' . \$arrays . '<br>' . \$true . '<br>' 
+			. \$false . '<br>' . \$nulls . '<br>' . \$nums . \$strs . \$else;
+	}
+	public function var2string (\$var)
+	{
+		ob_start();
+		var_dump(\$var);
+		\$result = ob_get_clean();
+		\$deletes = array(
+			'/<i>(.*?)<\/i>/',
+			'/ <small>(.*?)<\/small>/',
+			'/(.*?)<b>(.*?)<\/b>(.*?)\n/',
+		);
+		\$result = preg_replace(\$deletes, '', \$result);
+		return \$result; 
+	}
+}
+}
+]]></content>
+	<description>WordPress Posts Loop</description>
+	<tabTrigger>wp_PluginBase</tabTrigger>
+	<scope>source.php - variable.other.php</scope>
+</snippet>

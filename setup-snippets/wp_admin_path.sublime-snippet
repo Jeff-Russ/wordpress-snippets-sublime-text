@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[
+substr( __FILE__, 0, strpos(__FILE__, "wp-content") ).'wp-admin/'
+]]></content>
+	<description>Equivalent of get_home_path().'/wp-admin' from anywhere in /wp-content</description>
+	<tabTrigger>wp_admin_path</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.php - variable.other.php</scope>
+</snippet>

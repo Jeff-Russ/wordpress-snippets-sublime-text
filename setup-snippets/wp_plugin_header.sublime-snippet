@@ -1,6 +1,5 @@
 <snippet>
 	<content><![CDATA[
-<?php
 /**
  * ${1:My Plugin}
  *
@@ -21,8 +20,8 @@
  * License URI: ${11:http://www.gnu.org/licenses/gpl-2.0.txt}
  */
 ]]></content>
-	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<description>Add header comment for WordPress plugins after ?php</description>
 	<tabTrigger>wp_plugin_header</tabTrigger>
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<!-- <scope>source.php</scope> -->
+	<scope>source.php - variable.other.php</scope>
 </snippet>

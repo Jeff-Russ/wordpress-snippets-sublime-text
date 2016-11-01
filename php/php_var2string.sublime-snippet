@@ -1,0 +1,22 @@
+<snippet>
+	<content><![CDATA[
+function var2string (\$var)
+{
+	ob_start();
+	var_dump(\$var);
+	\$result = ob_get_clean();
+	\$deletes = array(
+		'/<i>(.*?)<\/i>/',
+		'/ <small>(.*?)<\/small>/',
+		'/(.*?)<b>(.*?)<\/b>(.*?)\n/',
+	);
+	\$result = preg_replace(\$deletes, '', \$result);
+	return \$result; 
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>php_var2string</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.php - variable.other.php</scope>
+	<description>var_dump to trimmed string, bypassing output.</description>
+</snippet>

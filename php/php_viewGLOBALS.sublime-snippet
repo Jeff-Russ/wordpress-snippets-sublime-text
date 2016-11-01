@@ -1,0 +1,31 @@
+<snippet>
+	<content><![CDATA[
+function viewGLOBALS(){
+	\$objects = "<br>Objects:<br>";
+	\$arrays = "<br>Arrays:<br>";
+	\$true = "<br>True:<br>";
+	\$false = "<br>False:<br>";
+	\$nulls = "<br>NULL:<br>";
+	\$nums = "<br>Numbers:<br>";
+	\$strs = "<br>Strings:<br>";
+	\$else = "<br>else:<br>";
+	foreach (\$GLOBALS as \$key => \$value) {
+		if (is_object(\$value)) \$objects .= " '\$key',";
+		elseif (is_array(\$value)) \$arrays .= " '\$key',";
+		elseif (true === \$value) \$true .= " '\$key',";
+		elseif (false === \$value) \$false .= " '\$key'";
+		elseif (is_null(\$value)) \$nulls .= " '\$key',";
+		elseif (is_numeric(\$value)) \$nums .= " '\$key' => \$value,<br>";
+		elseif (is_string(\$value)) \$strs .= " '\$key' => '\$value',<br>";
+		else \$else += " '\$key' => \$value,";
+	}
+	return \$objects . '<br>' . \$arrays . '<br>' . \$true . '<br>' 
+		. \$false . '<br>' . \$nulls . '<br>' . \$nums . \$strs . \$else;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>php_viewGlobals</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.php - variable.other.php</scope>
+	<description>Get contents of \$GLOBAL as string</description>
+</snippet>
